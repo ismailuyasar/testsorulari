@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>50 Sorulu Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .question {
+            margin-bottom: 20px;
+            background: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .button {
+            display: inline-block;
+            margin: 5px;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .button.correct {
+            background-color: green;
+        }
+        .button.wrong {
+            background-color: red;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Güzellik Uzmanı Didem Hanım İçin Test</h1>
+
+    <div id="quiz-container">
+        <!-- Sorular buraya eklenecek -->
+    </div>
+
+    <script>
+        const questions = [
+             {
+    "question": "İstenmeyen tüylerin kalıcı olarak yok edilmesine ne denir?",
+    "answers": ["depilasyon", "epilasyon", "bölgesel incelme", "ağda"],
+    "correct": 1
+  },
+  {
+    "question": "Kılın deri içindeki en üst kısmı hangi bölgedir?",
+    "answers": ["Üst kısım kıl", "kanal bölgesi", "yağ bezi", "tümsek alan"],
+    "correct": 1
+  },
+  {
+    "question": "Kılın deri içindeki en alt bölümü hangisidir?",
+    "answers": ["bulbus", "yağ bezi", "orta kısım", "kıl kanal bölgesi"],
+    "correct": 0
+  },
+  {
+    "question": "Bağ dokusu kılıfı kaç kattan oluşur?",
+    "answers": ["2", "3", "4", "5"],
+    "correct": 1
+  },
+  {
+    "question": "Aşağıdaki durumlardan hangisinde lazer yapılması uygundur?",
+    "answers": ["akut deri enfeksiyonu olan kişilere", "dövme ve yaygın benleri olan kişilere", "gebe ve emziren kişilere", "regly dönemi biten kişilere"],
+    "correct": 3
+  },
+  {
+    "question": "Aşağıdakilerden hangisi kılın en alttaki kısmıdır?",
+    "answers": ["kıl kanal bölgesi", "bulbus", "tümsek alan", "alt kısım"],
+    "correct": 1
+  },
+  {
+    "question": "Kıl köklerini zayıflatıcı sıvının elektrik akımı ile kıl köklerine iletilmesine ne ad verilir?",
+    "answers": ["jelli epilasyon", "ampüllü epilasyon", "cımbızlı epilasyon", "ışıklı epilasyon"],
+    "correct": 2
+  },
+  {
+    "question": "Kadınlarda olmaması gereken bölgelerde kıllanma olmasına ne denir?",
+    "answers": ["böbrek üstü bezi hastalığı", "troid hastalığı", "hirsutizm", "polikistik over hastalığı"],
+    "correct": 2
+  },
+  {
+    "question": "Lazer epilasyon hangi evredeki kılları etkiler?",
+    "answers": ["anagen evre", "telogen evre", "hepsi", "katagen evre"],
+    "correct": 0
+  },
+  {
+    "question": "İnce, çok az renkli ve iliksiz kıllara ne ad verilir?",
+    "answers": ["sert kıl", "gövde kılı", "yumuşak kıl", "ayva tüyü"],
+    "correct": 3
+  },
+  {
+    "question": "Epilasyon yapılan bölgelerde leke oluşumunu engellemek için ne tür önlem alınmalıdır?",
+    "answers": ["antibiyotikli merhem kullanılır", "soğuk duş alınmalıdır", "güneşten korunmalıdır", "buz kompres yapılmalıdır"],
+    "correct": 2
+  },
+  {
+    "question": "Kişinin yaş, cinsiyet ve ırk özelliklerine göre normal sınırların üstünde olan kıllanma artışına ne denir?",
+    "answers": ["Hipofiz", "tiroit", "hipertrikoz", "epifiz"],
+    "correct": 2
+  },
+  {
+    "question": "İğneli epilasyonda kıl köküne girerken aşağıdaki hususlardan hangisine dikkat etmelidir?",
+    "answers": ["kıl uzanım yönü ve kılın deriye çıkış açısı", "iğne probunu sol elle tutmaya", "cilt gerdirilmemeli", "ten rengine dikkat edilmelidir"],
+    "correct": 0
+  },
+  {
+    "question": "Işıklı epilasyon yapmak için uygun ışık dalga boyları kaç nm aralığında olmalıdır?",
+    "answers": ["1064-1200 nm", "800-1100 nm", "500-980 nm", "600-1200 nm"],
+    "correct": 3
+  },
+  {
+    "question": "Hangi epilasyon yönteminde kıllar işlem öncesi ağda ile alınır?",
+    "answers": ["jelli epilasyon", "ampüllü epilasyon", "ışıklı epilasyon", "iğneli epilasyon"],
+    "correct": 1
+  },
+  {
+    "question": "Aşağıdakilerden hangisi kıllanmayı etkileyen nedenlerden değildir?",
+    "answers": ["irksal nedenler", "iklim", "cinsiyet", "kalıtım"],
+    "correct": 1
+  },
+  {
+    "question": "Derinin tanımı aşağıdakilerden hangisinde doğru olarak verilmiştir?",
+    "answers": ["Görme organıdır", "Vücudun dışını örten bir duyu organıdır", "Epitelyum dokudur", "İşitme organıdır"],
+    "correct": 1
+  },
+  {
+    "question": "Aşağıdakilerden hangisi selülit nedenlerinden biridir?",
+    "answers": ["Düzenli beslenme ve yaşam", "Düzenli Spor ve egzersiz", "Dolaşım bozukluğu", "Az tuz tüketilmesi"],
+    "correct": 2
+  },
+  {
+    "question": "Aşağıdakilerden hangisi masaj manüpülasyonlarından değildir?",
+    "answers": ["Eflöraj", "Friksiyon", "Yoğurma", "Epidermis"],
+    "correct": 3
+  },
+  {
+    "question": "Lazer epilasyon işleminin başarılı olması için kıl yapısında ne aranır?",
+    "answers": ["Kılın pigmentlere sahip olması", "Kılların sayısının fazla olması", "Kılların traşlı olması", "Kılların beyaz olması"],
+    "correct": 0
+  },
+  {
+    "question": "Nm (nanometre) nedir?",
+    "answers": ["Işığın dalga boyudur", "Işığın gücüdür", "Işın frekansıdır", "Işığın etkisidir"],
+    "correct": 0
+  },
+  {
+    "question": "Total enerji yani toplam enerji epilasyon işleminde ne anlama gelir?",
+    "answers": ["Tek bir atışta deriye gönderilen enerjidir", "1 saniyede yapılan atış sayısıdır", "Belli bir alana belli bir süre gönderilen toplam enerjidir", "İşlem yapılan toplam süredir"],
+    "correct": 2
+  },
+  {
+    "question": "Lazer sistemi ile IPL sistemleri arasındaki en büyük fark nedir?",
+    "answers": ["Cihazların ağırlıklarının farklı olması", "Spot büyüklüklerinin farklı olması", "Uygulama yapılan kişilerin farklı fiziki özelliklere sahip olmaları", "Bir sistem sabit dalga boyu kullanırken diğeri bütün dalga boylarını üretmektedir"],
+    "correct": 3
+  },
+  {
+    "question": "Aşağıdakilerden hangisi diyot lazer işleminden önce ultrason jelinin sürülme nedenlerinden değildir?",
+    "answers": ["Uygulanan ısının jel tarafından dışa aktarılması sağlanması", "Ütüleme hareketinin daha rahat yapılması", "Bölgeyi dezenfekte etmesi", "Lazer ışının deriye iletilmesini kolaylaştırmak"],
+    "correct": 2
+  },
+  {
+    "question": "Fluence Nedir?",
+    "answers": ["Tek bir atışta gönderilen enerji", "Atış yapılan bölgenin büyüklüğü", "Derinin altına gönderilen toplam enerji", "Atış yapılan alanın büyüklüğü"],
+    "correct": 3
+  },
+  {
+    "question": "Aşağıdakilerden hangisi kılın evrelerinden değildir?",
+    "answers": ["Anajen", "Fazojen", "Telojen", "Katojen"],
+    "correct": 1
+  },
+  {
+    "question": "Lazer işleminden önce kılların traş edilme sebebi nedir?",
+    "answers": ["Estetik olarak dökülme dönemine kadar fayda sağlaması", "İşlemin uygulayıcı için daha kolay yapılmasını sağlamak", "Gönderilecek ışının derinin üzerinde emilmesi ile deri yanıklarının oluşmasını engellemek", "Kılların kolay dökülmesini sağlamak"],
+    "correct": 2
+  },
+  {
+    "question": "Işığın hangi özelliği lazer epilasyon işlemi için gereklidir?",
+    "answers": ["Yansıma", "Saçılma", "Geçme", "Emilme"],
+    "correct": 3
+  },
+  {
+    "question": "Aşağıdakilerden hangisi diyot lazer cihazı soğutma sisteminin yararlarından biri değildir?",
+    "answers": ["Diyot barları sürekli olarak soğutarak cihazın bozulmasını engellemektedir", "Deriyi sürekli olarak soğutarak yanmayı engellemektedir", "Kılların daha çabuk dökülmesini sağlamaktadır", "Lokal anestezi görevi yaparak acı hissini azaltmaktadır"],
+    "correct": 2
+  }
+        ];
+
+        const quizContainer = document.getElementById('quiz-container');
+
+        questions.forEach((q, index) => {
+            const questionDiv = document.createElement('div');
+            questionDiv.className = 'question';
+            questionDiv.innerHTML = `<h3>${index + 1}) ${q.question}</h3>`;
+            q.answers.forEach((answer, i) => {
+                const button = document.createElement('button');
+                button.className = 'button';
+                button.innerText = answer;
+                button.onclick = () => checkAnswer(button, i, q.correct);
+                questionDiv.appendChild(button);
+            });
+            quizContainer.appendChild(questionDiv);
+        });
+
+        function checkAnswer(button, selected, correct) {
+            if (selected === correct) {
+                button.classList.add('correct');
+            } else {
+                button.classList.add('wrong');
+                const correctButton = button.parentElement.querySelectorAll('.button')[correct];
+                correctButton.classList.add('correct');
+                correctButton.innerText += " (Doğru Cevap)";
+            }
+            disableButtons(button.parentElement);
+        }
+
+        function disableButtons(questionDiv) {
+            const buttons = questionDiv.querySelectorAll('.button');
+            buttons.forEach(button => {
+                button.disabled = true;
+            });
+        }
+    </script>
+
+</body>
+</html>

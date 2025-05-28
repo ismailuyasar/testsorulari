@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>50 Sorulu Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .question {
+            margin-bottom: 20px;
+            background: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .button {
+            display: inline-block;
+            margin: 5px;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .button.correct {
+            background-color: green;
+        }
+        .button.wrong {
+            background-color: red;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Güzellik Uzmanı Didem Hanım İçin Test</h1>
+
+    <div id="quiz-container">
+        <!-- Sorular buraya eklenecek -->
+    </div>
+
+    <script>
+        const questions = [
+            { question: "Cildi sağlıklı tutmak için neler yapılmamalıdır?", answers: ["Günde 2 litre su içilmeli", "Günlük yüz temizliği", "Sigara içilmeli", "Hepsi"], correct: 2 },
+            { question: "Genellikle güzellik merkezlerinde kullanılan sterilizasyon yöntemi aşağıdakilerden hangisidir?", answers: ["Aseton", "Sıcak su", "Vakum", "UV ışınlı sterilizasyon"], correct: 3 },
+            { question: "Aşağıdakilerden hangisi girişimcinin özelliklerinden değildir?", answers: ["Kararlılık", "İyimserlik", "Uyumluluk", "İş bitiricilik"], correct: 2 },
+            { question: "Mesleki eğitimin önemi aşağıdakilerden hangisidir?", answers: ["Kendini geliştirmek ve eğitimin öneminin bilincinde olmak", "Gündemden eksik kalmak", "Sadece sertifika için eğitime gitmek", "Hepsi"], correct: 0 },
+            { question: "Başarılı bir girişimci aşağıdakilerden hangisini yapmamalıdır?", answers: ["Ekip arkadaşlarıyla uyumlu olmalıdır", "İleri görüşlü olmalıdır", "Karamsar olmalıdır", "Yaratıcı olmalıdır"], correct: 2 },
+            { question: "Aşağıdakilerden hangisinde anatominin tanımı doğru verilmiştir?", answers: ["Vücut fonksiyonlarını inceleyen ve bir canlının canlı olma özelliğini devam ettirmede rol oynayan bütün yaşamsal fonksiyonları ne olduğunu ve nasıl işlediğini açıklayan bir bilim dalıdır.", "Vücudu meydana getiren organları ve bu organların yapılarını inceleyen bir bilim dalıdır.", "Hayvanların vücut yapısını inceleyen bir bilim dalıdır", "Tüm canlıların yapıtaşlarını inceleyen bir bilim dalıdır"], correct: 1 },
+            { question: "Yüz şeklinin belirlenmesi nelere bağlı değildir?", answers: ["Yüz kemiklerinin şekline", "Kas sayısına", "Yanaklar ve çenedeki deri altı yağlarına", "Burun yapısına"], correct: 3 },
+            { question: "Omurga kaç bölümden oluşur?", answers: ["6", "8", "7", "5"], correct: 3 },
+            { question: "Üst ekstremite hangi bölümlerden oluşur?", answers: ["Gövde, baş ve kollar", "Omuz, kol, ön kol ve el kemikleri", "Gövde, omurga, kalça", "Baş, sırt, kollar"], correct: 1 },
+            { question: "Vücudun en uzun kemiği aşağıdakilerden hangisidir?", answers: ["Kaval kemiği", "Bacak kemiği", "Femur", "Scapula"], correct: 2 },
+            { question: "Kemikleri birbirine bağlayan yapıya ne denir?", answers: ["Kıkırdak", "Kaslar", "Eklemler", "Kürek kemiği"], correct: 2 },
+            { question: "Doğmamış bebeklerde bulunan kıllara aşağıdakilerden hangisi denir?", answers: ["Terminal kıl", "Lanugo kılı", "Ayva tüyü", "Bebek tüyü"], correct: 1 },
+            { question: "Normal düzeyde bulunan androjen hormonlarına kıl köklerinin aşırı duyarlılık göstermesine aşağıdakilerden hangisi denir?", answers: ["İdiopatik hirtusizm", "Hiperpigmentasyon", "Albinizm", "Hipertrikoz"], correct: 0 },
+            { question: "Işıklı epilasyon rengi aşağıdakilerden hangisidir?", answers: ["Beyaz", "Mor", "Mavi", "Kırmızı"], correct: 3 },
+            { question: "Termoliz yöntemde aşağıdaki akımlardan hangisi kullanılır?", answers: ["Yüksek frekans", "Galvanik akım", "Elektrik akımı", "Hepsi"], correct: 0 },
+            { question: "Lazer epilasyon yöntemi kılın hangi evresinde daha etkilidir?", answers: ["Katagen evre", "Telogen evre", "Dinlenme evresi", "Anagen evre"], correct: 3 },
+            { question: "Kaç adet kıl tipi vardır?", answers: ["1", "2", "3", "4"], correct: 3 },
+            { question: "Aşağıdakilerden hangisi sir ağdanın içinde bulunmaz?", answers: ["Reçine", "Bal mumu", "Şeker", "Yağ"], correct: 2 },
+            { question: "Aşağıdakilerden hangisi depilasyon yöntemlerinden biri değildir?", answers: ["Foto epilasyon", "Ilık ağda", "Soğuk ağda", "Tüy dökücü krem"], correct: 0 },
+            { question: "Sir ağda aşağıda verilen bölgelerden hangisine uygulanmamalıdır?", answers: ["Kol altı", "Genital bölge", "Parmaklar", "Bıyık"], correct: 1 },
+            { question: "Sir ağda ile ilgili verilen bilgilerden hangisi yanlıştır?", answers: ["Yanık cilt üzerine uygulanmalıdır", "Kesiklerin üzerine uygulanmamalıdır", "Tahriş olmuş cilde uygulanmamalıdır", "Kol altına uygulanmalıdır"], correct: 0 },
+            { question: "Aşağıdaki renk gruplarından hangisi ara renk grubudur?", answers: ["Kırmızı, sarı, mavi", "Siyah, kırmızı, mavi", "Yeşil, turuncu, mor", "Sarı, yeşil, mor"], correct: 2 },
+            { question: "Cildin gözeneklerinde biriken atık maddeleri dönen kıl fırçalar yardımı ile dışarı atılmasını kolaylaştırır. Tanımı aşağıdakilerden hangisine aittir?", answers: ["Frimatör", "Vapor, ozon", "Vakum", "Yüksek frekans"], correct: 0 },
+            { question: "Aşağıdakilerden hangisi yüksek frekans cihazına ait problardan biri değildir?", answers: ["Sivilce probu", "Mantar prob", "El probu", "Saç probu"], correct: 2 },
+            { question: "Aşağıdakilerden hangisi karma cildin tanımıdır?", answers: ["Cilt kurudur ve çatlamaya meyillidir", "Yanaklar yağlı t bölgesi kurudur.", "Cilt tamamen yağlıdır", "T bölgesi yağlı yanaklar kurudur."], correct: 1 },
+            { question: "Aşağıdakilerden hangisi yüksek frekansın fizyolojik etkilerinden biri değildir?", answers: ["Termal etki", "Damar genişletici etki", "Sakinleştirici etki", "Damar daraltıcı etki"], correct: 3 },
+            { question: "Aşağıdakilerden hangisi aknenin oluşum nedenlerinden biri değildir?", answers: ["Hormonal faaliyetler", "Artan sebum üretimi", "Mantar", "Mikroorganizmalar"], correct: 2 },
+            { question: "Derinin en üst katmanı aşağıdakilerden hangisidir?", answers: ["Stratum bazale", "Stratum spinozum", "Stratum corneum", "Stratum lucidum"], correct: 2 },
+            { question: "Solunum sisteminde bulunmayan organ aşağıdakilerden hangisidir?", answers: ["Burun", "Yutak", "Gırtlak", "Mide"], correct: 3 },
+            { question: "‘’Lifleri çok ince olduğu için çizgisiz kas olarak değerlendirilen mide, bağırsak, solunum sistemi ve kalp gibi iç organların hareketini sağlayan kaslardır.’’ Yukarıdaki tanım aşağıdakilerden hangisinin tanımıdır?", answers: ["İskelet kası", "Kalp kası", "Düz kaslar", "Hepsi"], correct: 2 },
+            { question: "Deride kaç tabaka vardır?", answers: ["5", "2", "4", "3"], correct: 3 },
+            { question: "Aşağıdakilerden hangisi derinin canlı tabakasıdır?", answers: ["Dermis", "Hipodermis", "Epidermis", "Hepsi"], correct: 0 },
+            { question: "Epidermiste kaç hücre vardır?", answers: ["1", "5", "7", "10"], correct: 1 },
+            { question: "Sivilceli ciltler için kullanılan peeling türü aşağıdakilerden hangisidir?", answers: ["Gomaj peeling", "Krem peeling", "Granül peeling", "Enzim peeling"], correct: 3 },
+            { question: "Kuru ciltler için kullanılan temizlik maddesi aşağıdakilerden hangisidir?", answers: ["Jel temizleyici", "Krem temizleyici", "Temizleme sütü", "Peeling"], correct: 1 },
+            { question: "Aşağıdakilerden hangisi klasik masaj hareketlerindendir?", answers: ["Efloraj", "Friksiyon", "Presyon", "Hepsi"], correct: 3 },
+            { question: "Aşağıdakilerden hangisi yüz ve kafatasında bulunan kemiklerden biri değildir?", answers: ["Temporal kemik", "Nasal kemik", "Scapula", "Hepsi"], correct: 2 },
+            { question: "Dengeyi sağlayan yapı aşağıdaki organlardan hangisinde bulunur?", answers: ["Kulak", "Kas", "Beyin", "Damarlar"], correct: 0 },
+            { question: "‘’Vücudumuzda bulunan kirli kanın akciğere gönderilerek oradan temizlenip kalbe geri dönmesidir.’’ tanımı aşağıdakilerden hangisine aittir?", answers: ["Büyük kan dolaşımı", "Küçük kan dolaşımı", "Atar damar dolaşımı", "Lenf dolaşımı"], correct: 1 },
+            { question: "İç salgı bezlerini içine alan sistem aşağıdakilerden hangisidir?", answers: ["Sindirim sistemi", "Boşaltım sistemi", "Endokrin sistem", "Üreme sistemi"], correct: 2 },
+            { question: "Aşağıdakilerden hangisi dış etkenlere karşı korumadır?", answers: ["Detoksiyon", "Botoksiyon", "E vitamini", "Biyolojik etkenlere karşı"], correct: 3 },
+            { question: "Aşağıdakilerden hangisi çıplak gözle cilt teşhisinde görülebilir?", answers: ["Yağ durumu", "Nem durumu", "Gözenek durumu", "Hepsi"], correct: 3 },
+            { question: "Aşağıdakilerden hangisi bakterilerin neden olduğu cilt enfeksiyonlarından biri değildir?", answers: ["Apse", "Vitiligo", "Çıbanlar", "İmpetigo"], correct: 1 },
+            { question: "Sıkılaştırıcılardaki alkol oranı en fazla ne kadar olmalıdır?", answers: ["%80", "%60", "%90", "%40"], correct: 1 },
+            { question: "Aşağıdakilerden hangisi vakumlamanın kullanım amaçlarından biri değildir?", answers: ["Sivilceleri kurutmak", "Kırışıklık bakımı için temel hazırlık yapmak", "Siyah noktaların çıkarılmasını kolaylaştırmak", "Kan dolaşımını hızlandırmak"], correct: 0 },
+            { question: "Aşağıdakilerden hangisi wodd lambadır?", answers: ["Kırmızı ışınları olan cihaz", "Siyah ışınları olan cihaz", "Mor ışınları olan cihaz", "Yeşil ışınları olan cihaz"], correct: 2 },
+            { question: "Alkol oranı yüksek sıkılaştırıcılar hangi cilt tipi için uygundur?", answers: ["Yağlı cilt", "Kuru cilt", "Hassas cilt", "Normal cilt"], correct: 0 },
+            { question: "Ozon buharının fizyolojik etkileri aşağıdakilerden hangisi değildir?", answers: ["Oksijen seviyesini yükseltici etki", "Bakteri ve mikrop öldürücü etki", "Cildi yatıştırıcı etki", "Cildi kurutucu etki"], correct: 3 },
+            { question: "Aşağıdakilerden hangisi uçuğa ait bir bilgidir?", answers: ["Deride mantarımsı hastalık", "Püstüller oluşması", "Nodüller oluşması", "Deri altında bulunan virüsün sebep olduğu tekrarlanan yara"], correct: 3 },
+            { question: "Cilt sıkılaştırıcılarının görevi aşağıdakilerden hangisi değildir?", answers: ["Sebum üretimini kontrol altına almak", "Cildi ferahlatmak", "Cilt gözeneklerini açmak", "Cilt gözeneklerini sıkılaştırmak"], correct: 2 }
+        ];
+
+        const quizContainer = document.getElementById('quiz-container');
+
+        questions.forEach((q, index) => {
+            const questionDiv = document.createElement('div');
+            questionDiv.className = 'question';
+            questionDiv.innerHTML = `<h3>${index + 1}) ${q.question}</h3>`;
+            q.answers.forEach((answer, i) => {
+                const button = document.createElement('button');
+                button.className = 'button';
+                button.innerText = answer;
+                button.onclick = () => checkAnswer(button, i, q.correct);
+                questionDiv.appendChild(button);
+            });
+            quizContainer.appendChild(questionDiv);
+        });
+
+        function checkAnswer(button, selected, correct) {
+            if (selected === correct) {
+                button.classList.add('correct');
+            } else {
+                button.classList.add('wrong');
+                const correctButton = button.parentElement.querySelectorAll('.button')[correct];
+                correctButton.classList.add('correct');
+                correctButton.innerText += " (Doğru Cevap)";
+            }
+            disableButtons(button.parentElement);
+        }
+
+        function disableButtons(questionDiv) {
+            const buttons = questionDiv.querySelectorAll('.button');
+            buttons.forEach(button => {
+                button.disabled = true;
+            });
+        }
+    </script>
+
+</body>
+</html>
