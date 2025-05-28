@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>50 Sorulu Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .question {
+            margin-bottom: 20px;
+            background: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .button {
+            display: inline-block;
+            margin: 5px;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .button.correct {
+            background-color: green;
+        }
+        .button.wrong {
+            background-color: red;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Güzellik Uzmanı Didem Hanım İçin Test</h1>
+
+    <div id="quiz-container">
+        <!-- Sorular buraya eklenecek -->
+    </div>
+
+    <script>
+        const questions = [
+              {
+    "question": "Aşağıdakilerden hangisi kılın deri içindeki bölümlerinden biri değildir?",
+    "answers": ["kıl kanal bölgesi", "yağ bezi", "iç kök kılıfı", "tümsek alan"],
+    "correct": 1
+  },
+  {
+    "question": "Aşağıdakilerden hangisi kılın dinlenme evresidir?",
+    "answers": ["telogen", "anagen", "katagen", "fetal dönem"],
+    "correct": 0
+  },
+  {
+    "question": "Işıklı epilasyonda hangi renk ışın kullanılır?",
+    "answers": ["mavi", "kırmızı", "yeşil", "turuncu"],
+    "correct": 1
+  },
+  {
+    "question": "Aşağıdakilerden hangisi doğmamış bebeklerde bulunan kıllara verilen addır?",
+    "answers": ["ayva tüyü", "yumuşak kıl", "lanugo kılı", "gövde kılı"],
+    "correct": 2
+  },
+  {
+    "question": "Aşağıdakilerden hangisi günümüzde kullanılan epilasyon yöntemi değildir?",
+    "answers": ["Işıklı epilasyon", "cımbızlı epilasyon", "lazer epilasyon", "iğneli epilasyon"],
+    "correct": 1
+  },
+  {
+    "question": "Aşağıdakilerden hangisi lazer epilasyonda kullanılan ilk lazer tipidir?",
+    "answers": ["Yağ lazer", "alexsandrite lazer", "Pruby lazer", "diode lazer"],
+    "correct": 2
+  },
+  {
+    "question": "Aşağıdakilerden hangisi en yüksek dalga boyuna sahip lazer tipidir?",
+    "answers": ["yag lazer", "ruby lazer", "diode lazer", "alexandrite lazer"],
+    "correct": 0
+  },
+  {
+    "question": "Güneş ışınlarından en kısa dalga boyuna sahip ve en yüksek enerji seviyesine sahip olan UV ışını hangisidir?",
+    "answers": ["UVC", "UVB", "UVA", "UVF"],
+    "correct": 0
+  },
+  {
+    "question": "Cilt nemlendiricilerinin üzerinde bulunan SPF neyi ifade eder?",
+    "answers": ["Bakterilerden koruma", "Güneşten koruma", "Renkli nemlendirme", "Alkol oranı"],
+    "correct": 1
+  },
+  {
+    "question": "Deriye elastikliğini veren lifli ve damarlarla sinirleri içeren tabaka hangisidir?",
+    "answers": ["Epidermis", "Hipodermis", "Dermis", "Stratum Corneum"],
+    "correct": 2
+  },
+  {
+    "question": "Vücudumuzda istenmeyen tüylerin kimyasal maddelerle yüzeysel şekilde yok edilmesi işlemi aşağıdakilerden hangisidir?",
+    "answers": ["Epilasyon", "Depilasyon", "Foto epilasyon", "Kişisel bakım"],
+    "correct": 1
+  },
+  {
+    "question": "DIODE Lazer Epilasyon hangi ciltlere uygulanmaz?",
+    "answers": ["Solaryuma girmiş olanlara", "Sedef hastalığı olanlara", "Güneşten yanmış ciltlere", "Hepsi"],
+    "correct": 3
+  },
+  {
+    "question": "Hangisi Epilasyon çeşidi değildir?",
+    "answers": ["İğneli epilasyon", "Foto epilasyon", "Depilasyon", "lazer epilasyon"],
+    "correct": 2
+  },
+  {
+    "question": "Epilasyonda kılın hangi evresinde iyi sonuç alınır?",
+    "answers": ["Anagen", "Katagen", "Telogen", "Hepsi"],
+    "correct": 0
+  },
+  {
+    "question": "Kıllar anatomik olarak yapı bakımından kaça ayrılır?",
+    "answers": ["4", "3", "6", "2"],
+    "correct": 1
+  },
+  {
+    "question": "Lazer epilasyon yaparken uzmanın dikkat etmesi gereken durumlar nelerdir?",
+    "answers": ["Kıllar kısaltılmalı", "Koruyucu gözlük kullanılmalı", "Makyaj ve krem temizlenmeli", "Hepsi"],
+    "correct": 3
+  },
+  {
+    "question": "Kılın çeşitleri aşağıdakilerden hangisi değildir?",
+    "answers": ["Terminal kıllar", "Vellus kıllar", "Lanuga kıllar", "Epilasyon"],
+    "correct": 3
+  },
+  {
+    "question": "Aşağıdakilerden hangisi lazer epilasyon yapılmayacak bölgedir?",
+    "answers": ["Kulak içi", "Koltuk altı", "Kasık bölgesi", "Alt bacak"],
+    "correct": 0
+  },
+  {
+    "question": "Aşırı kıllanmanın nedenleri aşağıdakilerden hangisi değildir?",
+    "answers": ["Hormonel nedenler", "Menopoz dönemi", "İlaçlar", "Bol su tüketimi"],
+    "correct": 3
+  },
+  {
+    "question": "Deri anatomik olarak kaça ayrılır?",
+    "answers": ["3", "6", "4", "5"],
+    "correct": 0
+  },
+  {
+    "question": "Derinin ekleri nelerdir?",
+    "answers": ["Saçlar", "Tırnaklar", "Kıllar", "Hepsi"],
+    "correct": 3
+  },
+  {
+    "question": "Aşağıdakilerden hangisi kılın uzama evrelerinden biri değildir?",
+    "answers": ["Melanin", "Anagen", "Katagen", "Telogen"],
+    "correct": 0
+  },
+  {
+    "question": "Doğmamış bebeklerde bulunan kıllara ne ad verilir?",
+    "answers": ["Terminal kıllar", "Vellus kıllar", "Lanuga kıllar", "Intermediyer kıllar"],
+    "correct": 2
+  },
+  {
+    "question": "Farklı dalga boylarındaki ışık sistemi ile kıl kökünü yok eden epilasyon hangisidir?",
+    "answers": ["Foto epilasyon", "Depilasyon", "İğneli epilasyon", "Cımbızlı epilasyon"],
+    "correct": 0
+  },
+  {
+    "question": "Uzman hangi durumlarda uygulamaya giremez?",
+    "answers": ["Bulaşıcı hastalık ve grip ise", "Malzeme eksikliğinde", "Hasta izin vermezse", "Hepsi"],
+    "correct": 3
+  },
+  {
+    "question": "Uzman randevu verirken nelere dikkat etmeli?",
+    "answers": ["Seans aralığına", "Müşteri yoğunluğuna", "Müşterinin uygun olduğu zamana", "Hepsi"],
+    "correct": 3
+  },
+  {
+    "question": "Uygulama ve bakım yapılan üst derinin adı nedir?",
+    "answers": ["Dermis", "Epidermis", "Pul tabaka", "Bazal Tabaka"],
+    "correct": 1
+  },
+  {
+    "question": "Aşağıdakilerden hangisi kılın tabakalarından biri değildir?",
+    "answers": ["Lif tabaka", "Pul tabaka", "Epidermis", "İlik tabaka"],
+    "correct": 2
+  },
+  {
+    "question": "Epilasyon yapılırken kıl köklerinin daha net görülmesi için kullanılan cihaz hangisidir?",
+    "answers": ["Vapozone", "Frimatör", "Vac-sprey", "Lup"],
+    "correct": 3
+  },
+  {
+    "question": "Cilt masajına hangi masaj manipülasyonu ile başlanır?",
+    "answers": ["Friksiyon", "Tapotmen", "Eflöraj", "Vibrasyon"],
+    "correct": 2
+  },
+  {
+    "question": "Cilt kendini kaç günde yeniler?",
+    "answers": ["35 Gün", "28 Gün", "40 Gün", "58 Gün"],
+    "correct": 1
+  },
+  {
+    "question": "Derinin tanımı aşağıdakilerden hangisinde doğru olarak verilmiştir?",
+    "answers": ["Görme organıdır.", "Vücudun dışını örten bir duyu organıdır.", "Epitelyum dokudur.", "İşitme organıdır."],
+    "correct": 1
+  }
+        ];
+
+        const quizContainer = document.getElementById('quiz-container');
+
+        questions.forEach((q, index) => {
+            const questionDiv = document.createElement('div');
+            questionDiv.className = 'question';
+            questionDiv.innerHTML = `<h3>${index + 1}) ${q.question}</h3>`;
+            q.answers.forEach((answer, i) => {
+                const button = document.createElement('button');
+                button.className = 'button';
+                button.innerText = answer;
+                button.onclick = () => checkAnswer(button, i, q.correct);
+                questionDiv.appendChild(button);
+            });
+            quizContainer.appendChild(questionDiv);
+        });
+
+        function checkAnswer(button, selected, correct) {
+            if (selected === correct) {
+                button.classList.add('correct');
+            } else {
+                button.classList.add('wrong');
+                const correctButton = button.parentElement.querySelectorAll('.button')[correct];
+                correctButton.classList.add('correct');
+                correctButton.innerText += " (Doğru Cevap)";
+            }
+            disableButtons(button.parentElement);
+        }
+
+        function disableButtons(questionDiv) {
+            const buttons = questionDiv.querySelectorAll('.button');
+            buttons.forEach(button => {
+                button.disabled = true;
+            });
+        }
+    </script>
+
+</body>
+</html>
